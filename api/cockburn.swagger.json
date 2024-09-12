@@ -1,0 +1,1021 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Grandturk/cockburn API Documentations",
+    "version": "1.0",
+    "contact": {
+      "name": "Grandturk/cockburn API Documentations",
+      "url": "https://github.com/footprintai/grandturk"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://github.com/footprintai/grandturk/blob/master/LICENSE.txt"
+    }
+  },
+  "tags": [
+    {
+      "name": "CockburnService"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https",
+    "wss"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/login": {
+      "post": {
+        "operationId": "CockburnService_AppLogin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnAppLoginResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cockburnAppLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/projects/{projectId}/transcription": {
+      "get": {
+        "operationId": "CockburnService_ListTranscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnListTranscribeResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/projects/{projectId}/uploadfile": {
+      "post": {
+        "summary": "rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse) {\n   option (google.api.http) = {\n       post: \"/v1/projects\"\n       body: \"*\"\n   };\n}\nrpc PutProject(PutProjectRequest) returns (PutProjectResponse) {\n   option (google.api.http) = {\n       put: \"/v1/projects/{project_id}\"\n       body: \"*\"\n   };\n}\nrpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse) {\n   option (google.api.http) = {\n       get: \"/v1/projects\"\n   };\n}\nrpc GetProject(GetProjectRequest) returns (GetProjectResponse) {\n   option (google.api.http) = {\n       get: \"/v1/projects/{project_id}\"\n   };\n}",
+        "operationId": "CockburnService_UploadFile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnUploadFileResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "description": "given when a project has been created",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "req": {
+                  "$ref": "#/definitions/commonUploadRequest"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/transcription": {
+      "post": {
+        "operationId": "CockburnService_CreateTranscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnCreateTranscribeResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cockburnCreateTranscribeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/transcription/{transcriptionId}": {
+      "get": {
+        "operationId": "CockburnService_GetTranscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnGetTranscribeResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transcriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      },
+      "delete": {
+        "operationId": "CockburnService_CancelTranscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnCancelTranscribeResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transcriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/transcription/{transcriptionId}:keep": {
+      "post": {
+        "operationId": "CockburnService_KeepTranscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnKeepTranscribeResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transcriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "projectId": {
+                  "type": "string"
+                },
+                "s3Filepaths": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/transcription/{transcriptionId}:stream": {
+      "get": {
+        "operationId": "CockburnService_GetTranscribeStreaming",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/cockburnGetTranscribeStreamingResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of cockburnGetTranscribeStreamingResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transcriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/user": {
+      "post": {
+        "operationId": "CockburnService_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnCreateUserResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cockburnCreateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    },
+    "/v1/user/{userId}": {
+      "get": {
+        "operationId": "CockburnService_GetUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cockburnGetUserResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/commonErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CockburnService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "cockburnASRSegmentPayload": {
+      "type": "object",
+      "properties": {
+        "num": {
+          "type": "integer",
+          "format": "int64",
+          "title": "seq number"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "cockburnAppBasicLoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "cockburnAppBasicLoginResponse": {
+      "type": "object",
+      "properties": {
+        "oauth2Token": {
+          "$ref": "#/definitions/cockburnOauth2Token"
+        }
+      }
+    },
+    "cockburnAppLoginRequest": {
+      "type": "object",
+      "properties": {
+        "basic": {
+          "$ref": "#/definitions/cockburnAppBasicLoginRequest"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/cockburnAppOauth2LoginRequest"
+        }
+      }
+    },
+    "cockburnAppLoginResponse": {
+      "type": "object",
+      "properties": {
+        "basic": {
+          "$ref": "#/definitions/cockburnAppBasicLoginResponse"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/cockburnAppOauth2LoginResponse"
+        }
+      }
+    },
+    "cockburnAppOauth2LoginRequest": {
+      "type": "object",
+      "properties": {
+        "localRedirectUrl": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        }
+      }
+    },
+    "cockburnAppOauth2LoginResponse": {
+      "type": "object",
+      "properties": {
+        "openBrowserUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "cockburnCancelTranscribeResponse": {
+      "type": "object"
+    },
+    "cockburnClipPayload": {
+      "type": "object",
+      "properties": {
+        "s3Fileapth": {
+          "type": "string"
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cockburnASRSegmentPayload"
+          }
+        }
+      }
+    },
+    "cockburnCreateTranscribeRequest": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "engine": {
+          "$ref": "#/definitions/cockburnTypeEngine"
+        },
+        "s3Filepaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "canReadAnonymously": {
+          "type": "boolean"
+        },
+        "canWriteAnonymously": {
+          "type": "boolean"
+        }
+      }
+    },
+    "cockburnCreateTranscribeResponse": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "transcriptionId": {
+          "type": "string"
+        }
+      }
+    },
+    "cockburnCreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "oauth2Token": {
+          "$ref": "#/definitions/cockburnOauth2Token"
+        }
+      }
+    },
+    "cockburnCreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "userInfo": {
+          "$ref": "#/definitions/userstoreUserInfo"
+        }
+      }
+    },
+    "cockburnGetTranscribeResponse": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "transcriptionId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/cockburnTypeTranscribeStatus"
+        },
+        "payload": {
+          "$ref": "#/definitions/cockburnClipPayload"
+        }
+      }
+    },
+    "cockburnGetTranscribeStreamingResponse": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "$ref": "#/definitions/cockburnClipPayload"
+        }
+      }
+    },
+    "cockburnGetUserResponse": {
+      "type": "object",
+      "properties": {
+        "userInfo": {
+          "$ref": "#/definitions/userstoreUserInfo"
+        }
+      }
+    },
+    "cockburnKeepTranscribeResponse": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "transcriptionId": {
+          "type": "string"
+        },
+        "queue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cockburnListTranscribeResponse": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "transcriptionId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/cockburnTypeTranscribeStatus"
+        }
+      }
+    },
+    "cockburnOauth2Token": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "cockburnTypeEngine": {
+      "type": "string",
+      "enum": [
+        "TYPE_ENGINE_UNSPECIFIED",
+        "TYPE_ENGINE_ASR_OPENAIWHISPER",
+        "TYPE_ENGINE_ASR_WHISPERCPP",
+        "TYPE_ENGINE_ASR_FASTERWHISPER"
+      ],
+      "default": "TYPE_ENGINE_UNSPECIFIED"
+    },
+    "cockburnTypeTranscribeStatus": {
+      "type": "string",
+      "enum": [
+        "TYPE_TRANSCRIBE_STATUS_UNSPECIFIED",
+        "TYPE_TRANSCRIBE_STATUS_CREATED",
+        "TYPE_TRANSCRIBE_STATUS_SCHEDILED",
+        "TYPE_TRANSCRIBE_STATUS_PENDING",
+        "TYPE_TRANSCRIBE_STATUS_RUNNING",
+        "TYPE_TRANSCRIBE_STATUS_FINISHED",
+        "TYPE_TRANSCRIBE_STATUS_FAILED"
+      ],
+      "default": "TYPE_TRANSCRIBE_STATUS_UNSPECIFIED"
+    },
+    "cockburnUploadFileResponse": {
+      "type": "object",
+      "properties": {
+        "resp": {
+          "$ref": "#/definitions/commonUploadResponse"
+        }
+      }
+    },
+    "commonErrorObject": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "integer",
+          "description": "Response code",
+          "title": "code",
+          "pattern": "^[0-9]$"
+        },
+        "message": {
+          "type": "string",
+          "description": "Response message",
+          "title": "message",
+          "pattern": "^[a-zA-Z0-9]{1, 32}$"
+        }
+      }
+    },
+    "commonErrorResponse": {
+      "type": "object",
+      "properties": {
+        "correlationId": {
+          "type": "string",
+          "format": "uuid",
+          "example": "2438ac3c-37eb-4902-adef-ed16b4431030",
+          "description": "Unique event identifier for server requests",
+          "title": "x-correlation-id",
+          "pattern": "^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$"
+        },
+        "error": {
+          "$ref": "#/definitions/commonErrorObject"
+        }
+      }
+    },
+    "commonUploadRequest": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string"
+        },
+        "chunk": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "commonUploadResponse": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "type": "string",
+          "title": "the response would be a full file path (aka abs path)"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "userstoreApplicationID": {
+      "type": "string",
+      "enum": [
+        "APPLICATION_ID_UNSPECIFIED",
+        "APPLICATION_ID_KAFEIDO"
+      ],
+      "default": "APPLICATION_ID_UNSPECIFIED"
+    },
+    "userstoreUserInfo": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "$ref": "#/definitions/userstoreApplicationID"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "userEmail": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "externalIds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "X-API-Key",
+      "in": "header",
+      "x-amazon-apigateway-authorizer": {
+        "authorizerResultTtlInSeconds": 60,
+        "type": "token"
+      },
+      "x-amazon-apigateway-authtype": "oauth2"
+    },
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://example.com/oauth/authorize",
+      "tokenUrl": "https://example.com/oauth/token",
+      "scopes": {
+        "admin": "Grants read and write access to administrative information",
+        "read": "Grants read access",
+        "write": "Grants write access"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    },
+    {
+      "ApiKeyAuth": [],
+      "OAuth2": [
+        "read",
+        "write"
+      ]
+    }
+  ]
+}
